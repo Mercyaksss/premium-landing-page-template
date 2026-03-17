@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ============================================================
+         PAGE TITLE
+         Replace "Landing Page Template" with your product/brand name.
+         This appears in browser tabs and search engine results.
+    ============================================================ -->
+    <title>Landing Page Template</title>
+
+    <!-- ============================================================
+         FONTS
+         Two fonts are loaded:
+         - "Cormorant Garamond" → elegant serif for headings (premium feel)
+         - "DM Sans" → clean, modern sans-serif for body text
+
+         To swap fonts:
+         1. Visit https://fonts.google.com
+         2. Select your fonts and copy the new <link> tags here
+         3. Update the CSS variables --font-display and --font-body in style.css
+    ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================================
+         NOISE / GRAIN OVERLAY
+         A decorative full-screen texture layer that gives the page
+         depth and a high-end printed feel. It is purely decorative.
+         To remove it: delete this <div> and the .noise-overlay rule in CSS.
+    ============================================================ -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+
+    <!-- ============================================================
+         NAVBAR
+         Sticky top navigation bar. It picks up a backdrop-blur +
+         gold underline on scroll (handled in main.js).
+
+         - Replace "YourLogo" with your brand/product name or an <img> tag.
+         - Update each href="#..." to match the id="" on each section below.
+         - To hide the navbar entirely: add display:none to .optional-navbar
+           in style.css, or simply delete this whole <nav> block.
+    ============================================================ -->
+    <nav class="optional-navbar" id="main-nav">
+        <div class="nav-container">
+
+            <!-- LOGO — swap text for <img src="..." alt="Brand"> if you have one -->
+            <a href="#hero-section" class="nav-logo">YourLogo</a>
+
+            <!-- Hamburger toggle (CSS-only, mobile only) -->
+            <input type="checkbox" id="nav-checkbox" class="nav-toggle">
+            <label for="nav-checkbox" class="hamburger-label" aria-label="Toggle menu">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </label>
+
+            <!-- Desktop nav links — add/remove <li> items as needed -->
+            <ul class="nav-links">
+                <li><a href="#problem-section">Problem</a></li>
+                <li><a href="#agitation-section">Why It Matters</a></li>
+                <li><a href="#solution-section">Solution</a></li>
+                <li><a href="#features-section">Features</a></li>
+                <li><a href="#audience-section">Who It's For</a></li>
+                <li><a href="#faq-section">FAQ</a></li>
+                <!-- The last link doubles as a CTA pill — styled differently in CSS -->
+                <li><a href="#final-cta-section" class="nav-cta">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- ============================================================
+         HERO SECTION  (#hero-section)
+         The first thing visitors see. Keep messaging tight:
+         headline → tagline → one supporting sentence → one CTA.
+
+         Two-column layout: left = copy, right = product visual.
+         On mobile the image stacks above the text automatically.
+    ============================================================ -->
+    <section class="hero-section" id="hero-section">
+
+        <!-- Decorative floating orbs (purely visual, see CSS .hero-orb) -->
+        <div class="hero-orb hero-orb--1" aria-hidden="true"></div>
+        <div class="hero-orb hero-orb--2" aria-hidden="true"></div>
+
+        <div class="wide-container">
+            <div class="hero-grid">
+
+                <!-- LEFT: copy -->
+                <div class="hero-content" data-animate="fade-up">
+
+                    <!-- EYEBROW — a short label above the main headline (optional).
+                         Great for positioning ("For Freelancers", "New in 2025", etc.) -->
+                    <span class="eyebrow"><!-- Replace --> Your Category Label Here</span>
+
+                    <!-- MAIN HEADLINE — be bold. State the transformation, not just the product. -->
+                    <h1><!-- Replace with product/service name -->Your Product <em>Name</em> Here</h1>
+
+                    <!-- TAGLINE — one punchy line. The italic <em> adds typographic contrast. -->
+                    <span class="accent-text"><!-- Optional tagline -->Your Tagline Here</span>
+
+                    <!-- SUBHEADLINE — 1–2 sentences, focusing on the benefit, not the feature. -->
+                    <p class="subheadline"><!-- Replace -->
+                        A short, persuasive description that highlights your product or service's core value to the reader.
+                    </p>
+
+                    <!-- PRIMARY CTA BUTTON — link to checkout, sign-up, download, etc. -->
+                    <div class="hero-actions">
+                        <a href="#" class="cta-button"><!-- Replace --> Get Started</a>
+                        <!-- SECONDARY CTA — softer option ("See how it works", "Watch demo") -->
+                        <a href="#solution-section" class="cta-secondary"><!-- Replace --> See how it works ↓</a>
+                    </div>
+
+                    <!-- TRUST SIGNALS — small icons/text below the CTA (social proof, guarantees) -->
+                    <div class="trust-badges">
+                        <!-- Replace or add/remove these <span> items -->
+                        <span>✦ Instant Access</span>
+                        <span>✦ Beginner-Friendly</span>
+                        <span>✦ Fully Editable</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT: product image/mockup -->
+                <div class="hero-visual" data-animate="fade-left">
+
+                    <!-- HERO IMAGE — replace src with your product screenshot, mockup, or photo.
+                         Recommended size: at least 600×500 px.
+                         The wrapper adds the decorative frame/glow effect. -->
+                    <div class="hero-image-wrapper">
+                        <!-- Using a placeholder gradient block. Replace with:
+                             <img src="images/your-product.png" alt="Description of your product"> -->
+                        <div class="hero-image-placeholder" aria-label="Replace with product image">
+                            <div class="placeholder-inner">
+                                <div class="placeholder-icon">◈</div>
+                                <p>Replace with your<br>product image</p>
+                                <!-- To use a real image instead of this block:
+                                     1. Delete this entire .hero-image-placeholder div
+                                     2. Add: <img src="images/your-image.png" alt="Your product"> -->
+                            </div>
+                        </div>
+                        <!-- Decorative corner accents (CSS-drawn, no images needed) -->
+                        <div class="image-corner image-corner--tl" aria-hidden="true"></div>
+                        <div class="image-corner image-corner--br" aria-hidden="true"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         LOGO BAR / SOCIAL PROOF STRIP  (optional)
+         A horizontal ticker of client logos, publication mentions,
+         or stat highlights ("500+ customers", "Featured in Forbes").
+
+         To hide: add display:none to .logo-bar in style.css.
+         To add real logos: replace <span> text with <img> tags.
+    ============================================================ -->
+    <div class="logo-bar" aria-label="As seen in / trusted by">
+        <div class="logo-bar-track">
+            <!-- Replace these with logos or stats. Duplicated for seamless loop. -->
+            <span>Your Brand</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span>Client / Press Name</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span>As Seen In</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span>500+ Happy Users</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span>Award Winning</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <!-- Duplicate for seamless CSS marquee loop -->
+            <span aria-hidden="true">Your Brand</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span aria-hidden="true">Client / Press Name</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span aria-hidden="true">As Seen In</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span aria-hidden="true">500+ Happy Users</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+            <span aria-hidden="true">Award Winning</span>
+            <span class="logo-bar-dot" aria-hidden="true">◆</span>
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         PROBLEM SECTION  (#problem-section)
+         PAS Step 1: Name the pain. Be specific. Visitors should feel
+         "this was written for me."
+
+         Tips:
+         - Lead with a question or bold statement.
+         - Use the reader's own language (the words they use to describe
+           their problem, not industry jargon).
+    ============================================================ -->
+    <section class="problem-section" id="problem-section">
+        <div class="container">
+
+            <!-- Section label (small uppercase label above the headline) -->
+            <span class="section-label" data-animate="fade-up">The Problem</span>
+
+            <h2 data-animate="fade-up"><!-- Replace -->
+                Facing challenges with<br><em>your product or service?</em>
+            </h2>
+
+            <p data-animate="fade-up"><!-- Replace with vivid problem description -->
+                Visitors may leave if your message isn't clear. A well-designed page communicates value and guides action — without it, every visitor is a missed opportunity.
+            </p>
+
+            <p data-animate="fade-up"><!-- Optional second paragraph — or delete -->
+                Every hour you spend on a page that doesn't convert is an hour your competitors are pulling ahead.
+            </p>
+
+            <div class="cta-wrapper" data-animate="fade-up">
+                <a href="#" class="cta-button"><!-- Replace --> This is exactly what I need</a>
+                <span class="cta-support"><!-- Optional -->Get started quickly — no experience needed</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         AGITATION SECTION  (#agitation-section)
+         PAS Step 2: Twist the knife — amplify the consequences.
+         This isn't about being negative; it's about making the
+         cost of inaction feel real and urgent.
+    ============================================================ -->
+    <section class="agitation-section" id="agitation-section">
+        <div class="container">
+
+            <span class="section-label" data-animate="fade-up">Why It Matters</span>
+
+            <h2 data-animate="fade-up"><!-- Replace -->
+                Without a clear, engaging page…
+            </h2>
+
+            <!-- AGITATION CARDS — visual alternative to bullet points.
+                 Add, remove, or rewrite each card. Icon can be any emoji or text. -->
+            <div class="agitation-cards" data-animate="fade-up">
+
+                <div class="agitation-card">
+                    <span class="agitation-icon" aria-hidden="true">✗</span>
+                    <!-- Replace with a specific pain point -->
+                    <p>Potential customers scroll past before they understand your offer.</p>
+                </div>
+
+                <div class="agitation-card">
+                    <span class="agitation-icon" aria-hidden="true">✗</span>
+                    <!-- Replace -->
+                    <p>Lost revenue and wasted ad spend on traffic that never converts.</p>
+                </div>
+
+                <div class="agitation-card">
+                    <span class="agitation-icon" aria-hidden="true">✗</span>
+                    <!-- Replace -->
+                    <p>Months of overthinking with nothing live and no sales coming in.</p>
+                </div>
+
+            </div>
+
+            <!-- PIVOT — optional transition line before the solution. Adds hope. -->
+            <p class="agitation-pivot" data-animate="fade-up">
+                <!-- Replace or remove this line -->
+                But here's the key: you don't need more information — you need <strong>clarity and a simple system</strong>.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         SOLUTION SECTION  (#solution-section)
+         PAS Step 3: Present your product/service as the clear answer.
+         Describe the transformation, not just the features.
+    ============================================================ -->
+    <section class="solution-section" id="solution-section">
+        <div class="container">
+
+            <span class="section-label" data-animate="fade-up">The Solution</span>
+
+            <h2 data-animate="fade-up"><!-- Replace -->
+                Introducing <em>Your Product Name</em>
+            </h2>
+
+            <p data-animate="fade-up"><!-- Replace with 1–2 sentences on your solution -->
+                This template is engineered to present your offer professionally. Clear layouts, persuasive copy structure, and strategic CTAs guide every visitor toward taking action.
+            </p>
+
+            <p data-animate="fade-up"><!-- Optional: outcome/transformation statement -->
+                Clean design. Instantly editable. Ready to launch for any product or service.
+            </p>
+
+            <!-- SOLUTION VISUAL — product screenshot or a stylized mockup block.
+                 Replace the .solution-mockup div with an <img> if preferred. -->
+            <div class="solution-visual" data-animate="fade-up">
+                <span class="solution-label" aria-hidden="true">Preview</span>
+
+                <!-- Replace this block with your actual product image:
+                     <img src="images/solution-preview.png" alt="Product preview"> -->
+                <div class="solution-mockup">
+                    <div class="mockup-bar" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="mockup-content" aria-label="Replace with product screenshot">
+                        <div class="mockup-placeholder-text">Your product screenshot<br>or preview image here</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FEATURES SECTION  (#features-section)
+         What's inside / What you get. Use specific, benefit-led language.
+         "Responsive design" → "Looks great on every device, automatically."
+    ============================================================ -->
+    <section class="features-outer" id="features-section">
+        <div class="container">
+
+            <div class="features-section" data-animate="fade-up">
+
+                <span class="section-label">What's Inside</span>
+                <h2><!-- Replace --> Template Features</h2>
+
+                <!-- FEATURE LIST — replace each <li> with your own feature.
+                     Keep them benefit-led, not just feature names. -->
+                <ul>
+                    <li><!-- Replace --> Easy-to-customize content, colors, and images in minutes.</li>
+                    <li><!-- Replace --> Fully responsive — desktop, tablet, and mobile ready.</li>
+                    <li><!-- Replace --> Modern, professional layout with clear, logical sections.</li>
+                    <li><!-- Replace --> PAS copywriting structure built in for high-conversion potential.</li>
+                    <li><!-- Replace --> Ready-to-use CTA buttons and placeholder content throughout.</li>
+                    <li><!-- Replace --> Flexible for any product, service, digital course, or app.</li>
+                </ul>
+
+            </div>
+
+            <div class="cta-wrapper" data-animate="fade-up">
+                <a href="#" class="cta-button"><!-- Replace --> Download Template</a>
+                <span class="cta-support"><!-- Optional --> No fluff. Fully editable. Yours forever.</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         SOCIAL PROOF SECTION
+         Real testimonials, stats, or press quotes go here.
+         Three proof items is the sweet spot — enough to convince,
+         not so many it looks padded.
+
+         FORMAT OPTIONS:
+         A) Quotes → add customer name + photo to each .proof-item
+         B) Stats  → large number headline + short descriptor
+         C) Logos  → replace text with <img> tags of client logos
+    ============================================================ -->
+    <section class="social-proof-section" id="proof-section">
+        <div class="wide-container">
+
+            <span class="section-label" style="text-align:center;display:block;" data-animate="fade-up">Proof</span>
+            <h2 data-animate="fade-up"><!-- Replace --> Why This Works</h2>
+
+            <div class="proof-grid" data-animate="fade-up">
+
+                <div class="proof-item">
+                    <!-- OPTION A: Testimonial quote (replace all placeholder text) -->
+                    <p class="proof-quote"><!-- Replace with real quote -->
+                        "Designed for beginners and professionals alike — easy to edit and deploy within the hour."
+                    </p>
+                    <!-- Customer info — delete if using stats instead of quotes -->
+                    <div class="proof-author">
+                        <div class="proof-avatar" aria-hidden="true">A</div><!-- Replace A with initials or <img> -->
+                        <div>
+                            <strong><!-- Name --> Alex M.</strong>
+                            <span><!-- Title/context --> Freelance Designer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proof-item">
+                    <p class="proof-quote"><!-- Replace -->
+                        "The flexible structure fits any product or service. Saved me days of design work."
+                    </p>
+                    <div class="proof-author">
+                        <div class="proof-avatar" aria-hidden="true">S</div>
+                        <div>
+                            <strong><!-- Name --> Sam K.</strong>
+                            <span><!-- Title --> Course Creator</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proof-item">
+                    <p class="proof-quote"><!-- Replace -->
+                        "Clean, modern, and actually converts. This is the last template I'll ever need."
+                    </p>
+                    <div class="proof-author">
+                        <div class="proof-avatar" aria-hidden="true">J</div>
+                        <div>
+                            <strong><!-- Name --> Jordan L.</strong>
+                            <span><!-- Title --> SaaS Founder</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Optional note / disclaimer under proof items -->
+            <p class="proof-note" data-animate="fade-up"><!-- Optional or remove -->
+                Replace placeholder testimonials with real customer quotes for best results.
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         WHO THIS IS FOR SECTION  (#audience-section)
+         The "for/not for" contrast increases trust by showing
+         you know exactly who should buy — and who shouldn't.
+         This makes the right buyer feel specially chosen.
+    ============================================================ -->
+    <section class="audience-section" id="audience-section">
+        <div class="container">
+
+            <span class="section-label" data-animate="fade-up">Fit Check</span>
+            <h2 data-animate="fade-up"><!-- Replace --> Who This Template is For</h2>
+
+            <div class="audience-grid" data-animate="fade-up">
+
+                <!-- FOR column — use a ✓ or ✦ bullet style (set in CSS) -->
+                <div class="audience-column audience-column--yes">
+                    <h3>✦ This is for you if:</h3>
+                    <ul>
+                        <li><!-- Replace --> You want a professional landing page without coding from scratch.</li>
+                        <li><!-- Replace --> You need a beginner-friendly design you can edit in minutes.</li>
+                        <li><!-- Replace --> You want a clean, modern layout for any product or service.</li>
+                        <!-- Add more <li> items as needed -->
+                    </ul>
+                </div>
+
+                <!-- NOT FOR column -->
+                <div class="audience-column audience-column--no">
+                    <h3>✗ Not for you if:</h3>
+                    <ul>
+                        <li><!-- Replace --> You already have a custom template you love.</li>
+                        <li><!-- Replace --> You need a highly complex or niche-specific design.</li>
+                        <li><!-- Replace --> You prefer a heavily branded layout built from scratch.</li>
+                        <!-- Add more <li> items as needed -->
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="cta-wrapper" data-animate="fade-up">
+                <a href="#" class="cta-button"><!-- Replace --> Get Started Now</a>
+                <span class="cta-support"><!-- Optional --> Instant access — start building today</span>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         CREATOR / PERSONAL NOTE  (optional)
+         A personal, human touch. Write as if you're speaking directly
+         to the reader. Share your story or your "why."
+         To remove this section: delete this entire <div> block.
+    ============================================================ -->
+    <div class="container">
+        <div class="creator-note" data-animate="fade-up">
+
+            <!-- Optional decorative quote mark -->
+            <div class="creator-quote-mark" aria-hidden="true">"</div>
+
+            <p><!-- Replace with your own personal note -->
+                This template is designed to make creating professional landing pages straightforward and fast. I built it because I spent way too long starting from scratch every single time. Replace this text with your own story or a message to your buyers.
+            </p>
+
+            <!-- SIGNATURE — uses the Dancing Script font by default.
+                 Change in style.css under .creator-note .signature -->
+            <span class="signature"><!-- Replace --> — Your Name Here</span>
+
+        </div>
+    </div>
+
+
+    <!-- ============================================================
+         FAQ SECTION  (#faq-section)
+         Accordion-style FAQ — answers open/close on click (main.js).
+         Add as many .faq-item blocks as you need.
+
+         TIPS:
+         - Include real objections your customers have.
+         - Address price, delivery, difficulty, refunds, compatibility.
+    ============================================================ -->
+    <section class="faq-section" id="faq-section">
+        <div class="container">
+
+            <span class="section-label" style="text-align:center;display:block;" data-animate="fade-up">Questions</span>
+            <h2 data-animate="fade-up"><!-- Replace --> Common Questions</h2>
+
+            <!-- FAQ ITEM — duplicate this block to add more questions -->
+            <div class="faq-item" data-animate="fade-up">
+                <button class="faq-question" aria-expanded="false">
+                    <!-- Replace with your question -->
+                    Is this template beginner-friendly?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer" hidden>
+                    <!-- Replace with your answer -->
+                    <p>Yes. This template was built to be fully editable with no coding experience required. Just swap the text, images, and colors.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-animate="fade-up">
+                <button class="faq-question" aria-expanded="false">
+                    Can I customize the colors, text, and images?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer" hidden>
+                    <p>Absolutely. All sections, text, images, and colors are fully customizable. The CSS uses variables so you can retheme the entire page by changing a handful of values.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-animate="fade-up">
+                <button class="faq-question" aria-expanded="false">
+                    <!-- Replace -->
+                    Is this free or paid?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer" hidden>
+                    <p><!-- Replace with your pricing info --> Replace this with your pricing information, what's included, and any guarantees you offer.</p>
+                </div>
+            </div>
+
+            <div class="faq-item" data-animate="fade-up">
+                <button class="faq-question" aria-expanded="false">
+                    <!-- Replace -->
+                    How do I use this template?
+                    <span class="faq-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="faq-answer" hidden>
+                    <p><!-- Replace --> Edit the placeholder text, swap in your images, and upload to your host. No build tools needed — it's plain HTML, CSS, and JS.</p>
+                </div>
+            </div>
+
+            <!-- Add more FAQ items here following the same pattern -->
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FINAL CTA SECTION  (#final-cta-section)
+         Last chance. Be direct. Restate the biggest benefit.
+         Some buyers scroll straight to the bottom — this section
+         should close the deal on its own.
+    ============================================================ -->
+    <section class="final-cta-section" id="final-cta-section">
+
+        <!-- Decorative background orbs (same technique as hero) -->
+        <div class="hero-orb hero-orb--3" aria-hidden="true"></div>
+
+        <div class="container">
+
+            <!-- Optional eyebrow -->
+            <span class="eyebrow eyebrow--light" data-animate="fade-up">Ready?</span>
+
+            <h2 data-animate="fade-up"><!-- Replace -->
+                Start Building Your<br><em>Landing Page Today</em>
+            </h2>
+
+            <p data-animate="fade-up"><!-- Replace subheadline -->
+                Professional design. Easy to customize. Launch quickly and confidently.
+            </p>
+
+            <a href="#" class="cta-button cta-button--large" data-animate="fade-up">
+                <!-- Replace with your final CTA text --> Download Template
+            </a>
+
+            <!-- Trust line — keep short: guarantee, delivery info, risk reversal -->
+            <p class="trust-line" data-animate="fade-up"><!-- Optional -->
+                Instant access &nbsp;✦&nbsp; Start today &nbsp;✦&nbsp; No experience needed
+            </p>
+
+        </div>
+    </section>
+
+
+    <!-- ============================================================
+         FOOTER  (optional)
+         Minimal footer with links. Add/remove links as needed.
+         To remove: delete this <footer> block entirely.
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="wide-container">
+            <div class="footer-inner">
+
+                <!-- Footer logo/brand -->
+                <span class="footer-logo"><!-- Replace --> YourLogo</span>
+
+                <!-- Footer links — replace # with real URLs -->
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="#"><!-- Replace --> Privacy Policy</a>
+                    <a href="#"><!-- Replace --> Terms</a>
+                    <a href="#"><!-- Replace --> Contact</a>
+                </nav>
+
+                <!-- Copyright line -->
+                <p class="footer-copy">
+                    <!-- Replace year and name -->
+                    © <span id="footer-year">2025</span> Your Name / Brand. All rights reserved.
+                </p>
+
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================================
+         JAVASCRIPT
+         main.js handles:
+         - Navbar scroll behavior (blur + gold border on scroll)
+         - Scroll-triggered reveal animations (data-animate attributes)
+         - FAQ accordion (open/close answers)
+         - Smooth active link highlighting in navbar
+         - Footer year auto-update
+
+         To disable JS effects: comment out or delete the <script> tag.
+         All sections still display correctly without JS (progressive enhancement).
+    ============================================================ -->
+    <script src="main.js"></script>
+
+</body>
+</html>

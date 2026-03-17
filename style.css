@@ -1,0 +1,1684 @@
+/* ================================================================
+   STYLE.CSS — Premium Landing Page Template
+   ================================================================
+   TABLE OF CONTENTS:
+   1.  CSS Variables (Design Tokens)
+   2.  Global Reset & Base
+   3.  Layout Containers
+   4.  Noise Overlay
+   5.  Navbar
+   6.  Hero Section
+   7.  Logo Bar (Marquee)
+   8.  Section Labels & Shared Typography
+   9.  Problem Section
+   10. Agitation Section
+   11. Solution Section
+   12. Features Section
+   13. Social Proof / Testimonials
+   14. Audience Section
+   15. Creator Note
+   16. FAQ Section (Accordion)
+   17. Final CTA Section
+   18. Footer
+   19. Scroll Animations
+   20. Mobile Responsive
+   ================================================================ */
+
+
+/* ================================================================
+   1. CSS VARIABLES — DESIGN TOKENS
+   ================================================================
+   Edit these values to retheme the entire page at once.
+   Every color, font, radius, and spacing value flows from here.
+   ================================================================ */
+
+:root {
+
+    /* --- BRAND COLORS -------------------------------------------
+       primary-gold  : main CTA, accents, section labels, bullets
+       Change these two and the whole accent palette updates.
+    ---------------------------------------------------------------- */
+    --primary-gold:         #c9a84c;    /* Main accent — buttons, icons, underlines  */
+    --primary-gold-hover:   #b8923e;    /* Hover state for buttons                   */
+    --primary-gold-dim:     rgba(201, 168, 76, 0.12); /* Subtle tinted backgrounds   */
+    --primary-gold-glow:    rgba(201, 168, 76, 0.25); /* Glow on hover/focus states  */
+
+    /* --- BACKGROUND SHADES (dark theme) -------------------------
+       Built on a near-black base. Each step is 3–5% lighter.
+       Swap --bg-dark to #f5f0e8 (and adjust text colors) for a
+       light/cream theme.
+    ---------------------------------------------------------------- */
+    --bg-dark:              #111111;    /* Page body base                            */
+    --bg-darker:            #0d0d0d;    /* Footer, deepest inset areas               */
+    --bg-section:           #191919;    /* Alternate section backgrounds             */
+    --bg-card:              #1e1e1e;    /* Cards, FAQ items, proof items             */
+    --bg-card-hover:        #222222;    /* Card hover lift state                     */
+    --bg-mockup:            #252525;    /* Browser mockup chrome                     */
+    --bg-mockup-content:    #1a1a1a;    /* Mockup inner content area                 */
+
+    /* --- BORDERS & DIVIDERS -------------------------------------
+       Thin lines that give structure without visual noise.
+    ---------------------------------------------------------------- */
+    --border-dark:          #1f1f1f;    /* Subtle section dividers                   */
+    --border-medium:        #2a2a2a;    /* Card edges, mockup frame                  */
+    --border-light:         #333333;    /* Highlighted borders, FAQ lines            */
+    --border-accent:        var(--primary-gold); /* Gold accent borders              */
+
+    /* --- TEXT HIERARCHY ------------------------------------------
+       Six levels of text contrast for clear visual hierarchy.
+       --text-white for headlines, down to --text-gray for captions.
+    ---------------------------------------------------------------- */
+    --text-white:           #ffffff;    /* H1, primary headlines                     */
+    --text-light:           #eeeeee;    /* H2, strong body copy                      */
+    --text-medium:          #d4d4d4;    /* Body paragraphs                           */
+    --text-muted:           #aaaaaa;    /* Secondary paragraphs, list items          */
+    --text-secondary:       #888888;    /* Nav links, meta text                      */
+    --text-gray:            #555555;    /* Captions, trust lines, footnotes          */
+
+    /* --- TYPOGRAPHY ---------------------------------------------
+       --font-display : heading font — editorial, high-contrast serif
+       --font-body    : body font — clean, readable sans-serif
+
+       To change fonts:
+       1. Load new Google Fonts in index.html <head>
+       2. Update the values below
+    ---------------------------------------------------------------- */
+    --font-display:         'Cormorant Garamond', Georgia, serif;
+    --font-body:            'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-script:          'Dancing Script', cursive; /* Signature / accent script  */
+
+    /* --- SPACING ------------------------------------------------
+       A consistent spacing scale. Use multiples of --space-unit.
+       Changing --space-unit scales all derived spacing proportionally.
+    ---------------------------------------------------------------- */
+    --space-unit:           8px;
+    --space-xs:             8px;        /* Tight gaps                                */
+    --space-sm:             16px;       /* Internal card padding                     */
+    --space-md:             24px;       /* Between small elements                    */
+    --space-lg:             48px;       /* Section internal padding                  */
+    --space-xl:             80px;       /* Section vertical padding                  */
+    --space-2xl:            120px;      /* Hero section padding                      */
+
+    /* --- SHAPE & EFFECTS ---------------------------------------- */
+    --radius-sm:            4px;        /* Subtle rounding (badges, pills)           */
+    --radius-md:            8px;        /* Cards, inputs                             */
+    --transition-fast:      0.18s ease;
+    --transition-base:      0.28s ease;
+    --transition-slow:      0.45s ease;
+
+    /* --- SHADOWS ------------------------------------------------ */
+    --shadow-card:          0 8px 32px rgba(0, 0, 0, 0.45);
+    --shadow-card-hover:    0 16px 48px rgba(0, 0, 0, 0.6);
+    --shadow-glow:          0 0 40px var(--primary-gold-glow);
+}
+
+
+/* ================================================================
+   2. GLOBAL RESET & BASE STYLES
+   ================================================================ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;            /* Smooth anchor jumps site-wide             */
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-medium);
+    line-height: 1.7;
+    font-size: 16px;                    /* Base — adjust to scale all rem/em values  */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;                 /* Prevent horizontal scroll from animations */
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/* Focus ring — accessible keyboard navigation indicator             */
+:focus-visible {
+    outline: 2px solid var(--primary-gold);
+    outline-offset: 3px;
+}
+
+
+/* ================================================================
+   3. LAYOUT CONTAINERS
+   ================================================================
+   .container    → narrow (720px) — body copy, PAS sections
+   .wide-container → wider (1080px) — hero, proof grid, footer
+
+   To widen/narrow the page: change max-width on these two classes.
+   ================================================================ */
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.wide-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Default section vertical rhythm */
+section {
+    padding: var(--space-xl) 0;
+}
+
+
+/* ================================================================
+   4. NOISE / GRAIN OVERLAY
+   ================================================================
+   A full-page SVG grain texture layered above everything at very
+   low opacity. Adds tactile richness to flat dark backgrounds.
+
+   To remove: delete the <div class="noise-overlay"> in HTML
+   and this entire rule block.
+
+   To adjust intensity: change the opacity value below.
+   ================================================================ */
+
+.noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;               /* Doesn't block clicks                      */
+    z-index: 999;                       /* Sits above content but below modals       */
+    opacity: 0.028;                     /* ← Increase for more grain, decrease for less */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-size: 180px 180px;       /* Tile size — smaller = finer grain         */
+}
+
+
+/* ================================================================
+   5. NAVBAR
+   ================================================================
+   Sticky top bar. Transparent by default; picks up .scrolled class
+   via JS (main.js) for a frosted-glass effect when page scrolls.
+
+   - To make always-opaque: remove the scrolled JS logic and set
+     background directly on .optional-navbar.
+   - To hide navbar: display: none on .optional-navbar.
+   ================================================================ */
+
+.optional-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    transition:
+        background-color var(--transition-base),
+        border-color var(--transition-base),
+        backdrop-filter var(--transition-base);
+}
+
+/* .scrolled is added by main.js when window.scrollY > 40 */
+.optional-navbar.scrolled {
+    background-color: rgba(13, 13, 13, 0.85);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom-color: rgba(201, 168, 76, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 68px;                       /* Adjust navbar height here                 */
+}
+
+/* LOGO — swap text for an <img> in HTML if you have a logo file   */
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color var(--transition-fast);
+}
+
+.nav-logo:hover {
+    color: var(--primary-gold);
+}
+
+/* Desktop nav links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color var(--transition-fast);
+}
+
+/* Animated underline on hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--primary-gold);
+    transition: width var(--transition-base);
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--text-light);
+}
+
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after {
+    width: 100%;
+}
+
+/* .nav-cta — the "Get Started" pill at the end of the nav         */
+.nav-cta {
+    background-color: var(--primary-gold) !important;
+    color: #000 !important;
+    padding: 8px 20px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    transition: background-color var(--transition-fast) !important;
+}
+
+.nav-cta:hover {
+    background-color: var(--primary-gold-hover) !important;
+}
+
+.nav-cta::after {
+    display: none !important;           /* No underline on the pill CTA              */
+}
+
+/* Active link highlight — added by main.js on scroll              */
+.nav-links a.active {
+    color: var(--primary-gold);
+}
+
+/* Hamburger (hidden on desktop) */
+.nav-toggle { display: none; }
+.hamburger-label { display: none; }
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--text-white);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#nav-checkbox { display: none; }
+
+
+/* ================================================================
+   6. HERO SECTION
+   ================================================================
+   Two-column grid: left copy / right visual.
+   Decorative orbs are blurred color blobs positioned absolutely.
+   ================================================================ */
+
+.hero-section {
+    position: relative;
+    padding: var(--space-2xl) 0 var(--space-xl);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+/* --- Decorative orbs ------------------------------------------- */
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-orb--1 {
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    top: -120px;
+    right: -100px;
+}
+
+.hero-orb--2 {
+    width: 320px;
+    height: 320px;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    bottom: -60px;
+    left: -80px;
+}
+
+.hero-orb--3 {                          /* Used in final CTA section                 */
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* --- Hero grid ------------------------------------------------- */
+.hero-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+}
+
+.hero-content {
+    text-align: left;
+}
+
+/* EYEBROW — small label above headline */
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--primary-gold);
+    border: 1px solid rgba(201, 168, 76, 0.35);
+    padding: 5px 12px;
+    margin-bottom: var(--space-md);
+}
+
+/* Used in the final CTA where background is dark enough for white */
+.eyebrow--light {
+    display: block;
+    text-align: center;
+    border-color: rgba(255,255,255,0.2);
+    color: var(--text-secondary);
+    margin: 0 auto var(--space-md);
+}
+
+/* --- Headlines ------------------------------------------------- */
+h1 {
+    font-family: var(--font-display);
+    font-size: clamp(42px, 5vw, 68px);  /* Fluid: shrinks on smaller screens         */
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.5px;
+    color: var(--text-white);
+    margin-bottom: var(--space-sm);
+}
+
+h1 em {
+    font-style: italic;
+    color: var(--primary-gold);         /* Italic + gold = elegant emphasis          */
+}
+
+h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.3px;
+    color: var(--text-white);
+    margin-bottom: var(--space-md);
+}
+
+h2 em {
+    font-style: italic;
+    color: var(--primary-gold);
+}
+
+h3 {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-white);
+    margin-bottom: var(--space-sm);
+}
+
+/* Accent text — tagline below h1 */
+.accent-text {
+    font-family: var(--font-script);
+    font-size: 28px;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: var(--space-md);
+    line-height: 1.4;
+}
+
+.subheadline {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    max-width: 520px;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+}
+
+/* --- Hero CTAs ------------------------------------------------- */
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+}
+
+/* PRIMARY CTA BUTTON
+   Used throughout the page. Solid gold, bold, uppercase.
+   To change style: edit here and it updates all instances.       */
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-gold);
+    color: #000000;
+    padding: 15px 42px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 2px solid transparent;
+    transition:
+        background-color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Shimmer sweep on hover — premium micro-interaction             */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 40%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 60%
+    );
+    transition: left 0.4s ease;
+}
+
+.cta-button:hover::after {
+    left: 160%;
+}
+
+.cta-button:hover {
+    background-color: var(--primary-gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.3);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+}
+
+/* Large variant — used in final CTA section                      */
+.cta-button--large {
+    padding: 18px 56px;
+    font-size: 14px;
+}
+
+/* SECONDARY CTA — ghost/text link style                          */
+.cta-secondary {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 2px;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.cta-secondary:hover {
+    color: var(--primary-gold);
+    border-color: var(--primary-gold);
+}
+
+/* CTA wrapper (centered CTA + support text below it)            */
+.cta-wrapper {
+    text-align: center;
+    margin: var(--space-xl) 0;
+}
+
+.cta-support {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-gray);
+    letter-spacing: 0.3px;
+}
+
+/* --- Trust badges below hero CTA ------------------------------- */
+.trust-badges {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.trust-badges span {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* --- Hero image wrapper ---------------------------------------- */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* Real <img> inside the wrapper */
+.hero-image-wrapper > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: var(--shadow-card);
+}
+
+/* Placeholder block — replace with <img> in production          */
+.hero-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-mockup) 100%);
+    border: 1px solid var(--border-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-card);
+}
+
+.placeholder-inner {
+    text-align: center;
+    color: var(--text-gray);
+}
+
+.placeholder-icon {
+    font-size: 36px;
+    color: var(--border-light);
+    margin-bottom: var(--space-sm);
+}
+
+.placeholder-inner p {
+    font-size: 13px;
+    color: var(--text-gray);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Decorative corner accents (CSS-drawn L-shapes)                 */
+.image-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--primary-gold);
+    border-style: solid;
+    opacity: 0.6;
+}
+
+.image-corner--tl {
+    top: -8px;
+    left: -8px;
+    border-width: 2px 0 0 2px;
+}
+
+.image-corner--br {
+    bottom: -8px;
+    right: -8px;
+    border-width: 0 2px 2px 0;
+}
+
+
+/* ================================================================
+   7. LOGO BAR — AUTO-SCROLLING MARQUEE STRIP
+   ================================================================
+   A horizontal ticker that auto-scrolls with a CSS animation.
+   To pause on hover: the CSS includes:hover pause already.
+
+   - To change scroll speed: edit animation-duration in .logo-bar-track
+   - To change content: update the <span> items in index.html
+   - To remove: delete the .logo-bar block in HTML + this rule block
+   ================================================================ */
+
+.logo-bar {
+    overflow: hidden;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 18px 0;
+    background-color: var(--bg-darker);
+
+    /* Fade out edges — creates a clean disappearing effect       */
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+.logo-bar-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: max-content;
+    animation: marquee 28s linear infinite;  /* ← Change 28s to speed up/slow down */
+    white-space: nowrap;
+}
+
+/* Pause marquee on hover for readability                         */
+.logo-bar:hover .logo-bar-track {
+    animation-play-state: paused;
+}
+
+.logo-bar-track span {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    transition: color var(--transition-fast);
+}
+
+.logo-bar-track span:hover {
+    color: var(--text-secondary);
+}
+
+.logo-bar-dot {
+    color: var(--primary-gold) !important;
+    font-size: 8px !important;
+    opacity: 0.5;
+}
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }  /* -50% because content is duplicated   */
+}
+
+
+/* ================================================================
+   8. SECTION LABELS & SHARED TYPOGRAPHY
+   ================================================================ */
+
+/* Small uppercase label above section headings                  */
+.section-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-gold);
+    margin-bottom: var(--space-sm);
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Small horizontal line before the label text                   */
+.section-label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 1px;
+    background-color: var(--primary-gold);
+}
+
+/* Highlighted inline text                                        */
+.highlight {
+    background-color: var(--primary-gold);
+    color: #000;
+    padding: 1px 6px;
+    font-weight: 700;
+}
+
+
+/* ================================================================
+   9. PROBLEM SECTION
+   ================================================================ */
+
+.problem-section {
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    background-color: var(--bg-section);
+}
+
+
+/* ================================================================
+   10. AGITATION SECTION
+   ================================================================ */
+
+.agitation-section {
+    border-bottom: 1px solid var(--border-dark);
+}
+
+/* AGITATION CARDS — three pain-point cards in a row             */
+.agitation-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+}
+
+.agitation-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-top: 2px solid rgba(201, 168, 76, 0.3);
+    padding: var(--space-md) var(--space-sm);
+    transition: border-top-color var(--transition-base), transform var(--transition-base);
+}
+
+.agitation-card:hover {
+    border-top-color: var(--primary-gold);
+    transform: translateY(-4px);
+}
+
+.agitation-card p {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Icon at top of each agitation card                            */
+.agitation-icon {
+    display: block;
+    font-size: 20px;
+    color: var(--primary-gold);
+    margin-bottom: var(--space-xs);
+    opacity: 0.6;
+}
+
+/* The "but here's the key" pivot line                           */
+.agitation-pivot {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--text-medium);
+    border-left: 3px solid var(--primary-gold);
+    padding-left: var(--space-sm);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+}
+
+.agitation-pivot strong {
+    color: var(--text-white);
+    font-style: normal;
+}
+
+
+/* ================================================================
+   11. SOLUTION SECTION
+   ================================================================ */
+
+.solution-section {
+    border-bottom: 1px solid var(--border-dark);
+    background-color: var(--bg-section);
+}
+
+/* Solution visual area                                           */
+.solution-visual {
+    margin-top: var(--space-lg);
+    text-align: center;
+}
+
+.solution-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-gold);
+    margin-bottom: var(--space-sm);
+}
+
+/* Browser-chrome-style mockup                                   */
+.solution-mockup {
+    display: inline-block;
+    max-width: 480px;
+    width: 100%;
+    background-color: var(--bg-mockup);
+    border: 1px solid var(--border-medium);
+    box-shadow: var(--shadow-card);
+    text-align: left;
+    overflow: hidden;
+}
+
+/* The three dots at the top of the browser mock                 */
+.mockup-bar {
+    background-color: var(--bg-darker);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid var(--border-medium);
+}
+
+.mockup-bar span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--border-light);
+}
+
+.mockup-bar span:nth-child(1) { background-color: #ff5f57; }
+.mockup-bar span:nth-child(2) { background-color: #ffbd2e; }
+.mockup-bar span:nth-child(3) { background-color: #28c840; }
+
+.mockup-content {
+    height: 200px;
+    background-color: var(--bg-mockup-content);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mockup-placeholder-text {
+    font-size: 13px;
+    color: var(--text-gray);
+    text-align: center;
+    line-height: 1.7;
+}
+
+
+/* ================================================================
+   12. FEATURES SECTION
+   ================================================================ */
+
+/* Outer wrapper provides the section background                 */
+.features-outer {
+    padding: var(--space-xl) 0;
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.features-section {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-top: 2px solid var(--primary-gold);
+    padding: var(--space-lg) var(--space-lg);
+    margin-bottom: 0;
+}
+
+.features-section h2 {
+    margin-bottom: var(--space-lg);
+}
+
+.features-section ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;     /* Two columns on desktop                    */
+    gap: var(--space-sm) var(--space-lg);
+}
+
+.features-section li {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.65;
+    padding-left: 22px;
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.features-section li:hover {
+    color: var(--text-light);
+}
+
+/* Arrow bullet                                                   */
+.features-section li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-gold);
+    font-weight: 400;
+}
+
+
+/* ================================================================
+   13. SOCIAL PROOF / TESTIMONIALS
+   ================================================================ */
+
+.social-proof-section {
+    background-color: var(--bg-section);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.social-proof-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
+/* Each testimonial card                                          */
+.proof-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    padding: var(--space-md);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-sm);
+}
+
+.proof-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card-hover);
+}
+
+/* Decorative opening quote mark                                  */
+.proof-quote {
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-medium);
+    line-height: 1.75;
+    margin: 0;
+    position: relative;
+    padding-top: 28px;
+}
+
+.proof-quote::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 56px;
+    color: var(--primary-gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -12px;
+    left: -4px;
+    line-height: 1;
+}
+
+/* Author row below each quote                                    */
+.proof-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--border-dark);
+}
+
+/* Avatar circle — replace letter with <img> for real photos     */
+.proof-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-mockup);
+    border: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary-gold);
+    flex-shrink: 0;
+}
+
+.proof-author strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.proof-author span {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.proof-note {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-gray);
+    font-style: italic;
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+}
+
+
+/* ================================================================
+   14. AUDIENCE SECTION
+   ================================================================ */
+
+.audience-section {
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.audience-section h2 {
+    margin-bottom: var(--space-sm);
+}
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.audience-column {
+    padding: var(--space-md);
+    border: 1px solid var(--border-medium);
+}
+
+/* "For you" column — green-tinted border top                     */
+.audience-column--yes {
+    border-top: 2px solid rgba(100, 200, 120, 0.5);
+    background-color: rgba(100, 200, 120, 0.03);
+}
+
+.audience-column--yes h3 {
+    color: rgba(140, 220, 140, 0.9);
+}
+
+/* "Not for you" column — red-tinted border top                   */
+.audience-column--no {
+    border-top: 2px solid rgba(200, 80, 80, 0.4);
+    background-color: rgba(200, 80, 80, 0.03);
+}
+
+.audience-column--no h3 {
+    color: rgba(220, 120, 120, 0.9);
+}
+
+.audience-column ul {
+    list-style: none;
+}
+
+.audience-column li {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.65;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.audience-column--yes li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: rgba(140, 220, 140, 0.8);
+    font-weight: 600;
+}
+
+.audience-column--no li::before {
+    content: "✗";
+    position: absolute;
+    left: 0;
+    color: rgba(220, 120, 120, 0.8);
+    font-weight: 600;
+}
+
+
+/* ================================================================
+   15. CREATOR NOTE
+   ================================================================ */
+
+.creator-note {
+    position: relative;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-medium);
+    border-left: 3px solid var(--primary-gold);
+    padding: var(--space-lg) var(--space-lg);
+    margin: var(--space-xl) 0;
+    overflow: hidden;
+}
+
+/* Large decorative quote mark                                    */
+.creator-quote-mark {
+    font-family: var(--font-display);
+    font-size: 120px;
+    color: var(--primary-gold);
+    opacity: 0.07;
+    position: absolute;
+    top: -20px;
+    right: 24px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.creator-note p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--text-medium);
+    font-style: italic;
+    margin-bottom: var(--space-sm);
+    position: relative;                 /* Above the decorative quote mark           */
+}
+
+/* Signature — uses Dancing Script font                           */
+.signature {
+    font-family: var(--font-script);
+    font-size: 28px;
+    color: var(--primary-gold);
+    display: block;
+    margin-top: var(--space-xs);
+}
+
+
+/* ================================================================
+   16. FAQ SECTION (ACCORDION)
+   ================================================================
+   The accordion behavior is handled in main.js.
+   Each .faq-item contains a <button> and a <div hidden> answer.
+   JS toggles the [hidden] attribute and aria-expanded.
+   ================================================================ */
+
+.faq-section {
+    background-color: var(--bg-section);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.faq-item {
+    border: 1px solid var(--border-medium);
+    border-left: 3px solid transparent;
+    margin-bottom: var(--space-sm);
+    background-color: var(--bg-card);
+    transition: border-left-color var(--transition-base);
+    overflow: hidden;
+}
+
+/* Highlight active/open FAQ item                                 */
+.faq-item:has(.faq-question[aria-expanded="true"]) {
+    border-left-color: var(--primary-gold);
+}
+
+/* FAQ question button — full-width click target                  */
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-md);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-light);
+    text-align: left;
+    background: none;
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    gap: var(--space-sm);
+}
+
+.faq-question:hover {
+    color: var(--primary-gold);
+    background-color: rgba(201, 168, 76, 0.04);
+}
+
+/* The +/− icon on the right */
+.faq-icon {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--primary-gold);
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+    line-height: 1;
+}
+
+/* Rotate icon when open                                          */
+.faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* FAQ answer — hidden by default; JS removes [hidden]           */
+.faq-answer {
+    padding: 0 var(--space-md) var(--space-md);
+}
+
+.faq-answer p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin: 0;
+    padding-top: var(--space-xs);
+    border-top: 1px solid var(--border-dark);
+}
+
+/* Remove [hidden] display:none override (JS does this)          */
+.faq-answer:not([hidden]) {
+    display: block;
+}
+
+
+/* ================================================================
+   17. FINAL CTA SECTION
+   ================================================================ */
+
+.final-cta-section {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--border-dark);
+    background-color: var(--bg-darker);
+}
+
+.final-cta-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.final-cta-section h2 {
+    margin-bottom: var(--space-sm);
+}
+
+.final-cta-section p {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+/* Trust line under the final CTA button                         */
+.trust-line {
+    margin-top: var(--space-sm);
+    font-size: 13px;
+    color: var(--text-gray);
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+}
+
+
+/* ================================================================
+   18. FOOTER
+   ================================================================ */
+
+.site-footer {
+    background-color: var(--bg-darker);
+    border-top: 1px solid var(--border-dark);
+    padding: var(--space-lg) 0;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.footer-links a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--primary-gold);
+}
+
+.footer-copy {
+    font-size: 12px;
+    color: var(--text-gray);
+    margin: 0;
+}
+
+
+/* ================================================================
+   19. SCROLL REVEAL ANIMATIONS
+   ================================================================
+   Elements with data-animate="fade-up" or data-animate="fade-left"
+   start invisible and slide into view when they enter the viewport.
+   IntersectionObserver in main.js adds the .is-visible class.
+
+   To disable animations: set --animate-duration to 0s, or remove
+   data-animate attributes from the HTML elements.
+
+   To change animation style: edit the transform/opacity values below.
+   ================================================================ */
+
+/* Initial (hidden) state.
+   Elements start invisible + offset. JS adds .is-visible to
+   reveal them when they scroll into the viewport.               */
+[data-animate] {
+    opacity: 0;
+    transition:
+        opacity 0.65s ease,
+        transform 0.65s ease;
+}
+
+/* Fade up — default animation direction */
+[data-animate="fade-up"] {
+    transform: translateY(32px);
+}
+
+/* Fade in from the right */
+[data-animate="fade-left"] {
+    transform: translateX(36px);
+}
+
+/* Visible state — JS adds this class when element enters view   */
+[data-animate].is-visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+/* Staggered delays — applied inline by main.js per child index  */
+[data-delay="1"] { transition-delay: 0.1s; }
+[data-delay="2"] { transition-delay: 0.2s; }
+[data-delay="3"] { transition-delay: 0.3s; }
+[data-delay="4"] { transition-delay: 0.45s; }
+
+/* Respect user preference for reduced motion                    */
+@media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+
+/* ================================================================
+   20. MOBILE RESPONSIVE
+   ================================================================
+   Breakpoints:
+   - 900px: tablet — collapse proof grid, audience grid
+   - 768px: show hamburger menu, stack hero
+   - 480px: small phone — tighten spacing, scale down type
+   ================================================================ */
+
+/* --- Tablet (≤ 900px) ----------------------------------------- */
+@media (max-width: 900px) {
+
+    .proof-grid {
+        grid-template-columns: 1fr;     /* Stack testimonials vertically             */
+    }
+
+    .features-section ul {
+        grid-template-columns: 1fr;     /* Single column features list               */
+    }
+
+    .agitation-cards {
+        grid-template-columns: 1fr;     /* Stack pain-point cards                    */
+    }
+}
+
+/* --- Mobile / Tablet (≤ 990px) -------------------------------- */
+@media (max-width: 990px) {
+
+    /* Navbar — show hamburger, hide desktop links                */
+    .nav-container {
+        padding: 0 16px;
+    }
+
+    /* Mobile nav overlay
+       Uses opacity + pointer-events instead of display:none so the
+       menu can fade and slide in smoothly when the hamburger is clicked. */
+    .nav-links {
+        display: flex;                  /* Always flex — transition needs this       */
+        flex-direction: column;
+        position: absolute;
+        top: 68px;                      /* Must match .nav-container height (68px)   */
+        left: 0;
+        right: 0;
+        background-color: rgba(13,13,13,0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-dark);
+        padding: 24px 0;
+        gap: 0;
+        z-index: 99;
+
+        /* Closed state */
+        opacity: 0;
+        pointer-events: none;           /* Unclickable while closed                  */
+        transform: translateY(-8px);    /* Starts slightly raised, drops into place  */
+        transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links li {
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 14px 24px;
+        font-size: 13px;
+    }
+
+    .nav-links a::after { display: none; }
+
+    .nav-cta {
+        margin: 8px 24px 0 !important;
+        text-align: center !important;
+    }
+
+    /* Show hamburger */
+    .hamburger         { display: flex; }
+    .hamburger-label   { display: block; }
+    #nav-checkbox      { display: none; }
+
+    /* Open state — fade + slide down into view */
+    #nav-checkbox:checked ~ .nav-links {
+        opacity: 1;
+        pointer-events: auto;           /* Re-enable clicks when open                */
+        transform: translateY(0);
+    }
+
+    /* Animate hamburger → X */
+    #nav-checkbox:checked ~ .hamburger-label .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 4px);
+    }
+    #nav-checkbox:checked ~ .hamburger-label .hamburger span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+    #nav-checkbox:checked ~ .hamburger-label .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -4px);
+    }
+
+    /* Hero — stack vertically (now triggers at 990px too)       */
+    .hero-section {
+        padding: 80px 0 60px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .hero-visual {
+        order: -1;                      /* Image above text on mobile                */
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .trust-badges {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    /* Audience grid — stack */
+    .audience-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    /* Creator note */
+    .creator-note {
+        padding: var(--space-md);
+    }
+
+    /* Features */
+    .features-section {
+        padding: var(--space-md);
+    }
+
+    /* General section spacing */
+    section {
+        padding: 60px 0;
+    }
+
+    /* Final CTA section */
+    .final-cta-section {
+        padding: 80px 0;
+    }
+
+    .cta-button--large {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* --- Small phones (≤ 480px) ----------------------------------- */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    .subheadline {
+        font-size: 15px;
+    }
+
+    .accent-text {
+        font-size: 22px;
+    }
+
+    .features-section {
+        padding: var(--space-sm) var(--space-sm);
+    }
+
+    .proof-item {
+        padding: var(--space-sm);
+    }
+
+    .faq-question {
+        font-size: 15px;
+        padding: var(--space-sm);
+    }
+
+    .faq-answer {
+        padding: 0 var(--space-sm) var(--space-sm);
+    }
+
+    .audience-column {
+        padding: var(--space-sm);
+    }
+
+    .hero-image-placeholder {
+        aspect-ratio: 3 / 2;
+    }
+}
