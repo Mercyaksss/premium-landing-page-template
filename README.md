@@ -8,10 +8,13 @@ A clean, fully editable HTML/CSS/JS landing page template built around the **PAS
 
 ```
 /
-├── index.html      — Page structure and content
-├── style.css       — All styling and design tokens
-├── main.js         — Scroll animations, FAQ accordion, navbar behavior
-└── README.md       — This guide
+├── index.html        — Page structure and all content
+├── style.css         — All styling, colors, fonts, and layout
+├── main.js           — Scroll animations, FAQ accordion, navbar behavior
+├── README.md         — This guide
+└── images/           — Create this folder and add your images here
+    ├── hero-image.png    (referenced in the hero section)
+    └── preview.png       (referenced in the solution section)
 ```
 
 ---
@@ -83,28 +86,31 @@ Search for `<!-- Replace` in `index.html` to jump to every editable text block.
 
 ### Images
 
-The template uses two types of image placeholders:
+Both image slots use real `<img>` tags — no placeholder divs to delete. Just update two attributes:
 
 **Hero image (right side of hero section):**
 ```html
-<!-- Find this block in the hero section and replace it: -->
-<div class="hero-image-placeholder"> ... </div>
-
-<!-- With your own image: -->
-<img src="images/your-product.png" alt="Description of your product">
+<img
+    src="images/hero-image.png"
+    alt="Replace with a description of your product or service"
+>
 ```
 
 **Solution section preview:**
 ```html
-<!-- Find .mockup-content and replace the inner div with: -->
-<img src="images/your-preview.png" alt="Product preview">
+<img src="images/preview.png" alt="Replace with a description of your preview image">
 ```
 
-**Tips for images:**
-- Store your images in an `/images` folder inside the template folder
+**To swap in your own images:**
+1. Create an `images/` folder inside the template folder
+2. Drop your image files in there
+3. Update the `src="..."` path to match your filename
+4. Update `alt="..."` with a short description (important for accessibility)
+
+**Image tips:**
 - Hero image: recommended minimum width of **600px**
-- Use `.png` for screenshots, `.jpg` for photos
-- Always fill in the `alt=""` attribute for accessibility
+- Use `.png` for screenshots and mockups, `.jpg` for photos
+- Keep file sizes reasonable — compress images before uploading for faster load times
 
 ---
 
@@ -144,7 +150,7 @@ The first thing visitors see. Keep it tight: one bold headline, one supporting s
 - **Primary CTA:** Your main action button — link to checkout, download, or sign-up
 - **Secondary CTA:** A softer option (`"See how it works ↓"`) for hesitant visitors
 - **Trust badges:** Three short chips below the CTA — delivery info, guarantees, social proof
-- **Hero image:** Replace the placeholder block with a screenshot, mockup, or photo of your product
+- **Hero image:** Update `src="images/hero-image.png"` with your own image path, and update the `alt` text to describe your image
 
 ---
 
@@ -181,7 +187,7 @@ PAS Step 3 — introduce your product or service as the clear answer. Focus on t
 
 - Lead with the product name in the headline (use `<em>` tags for the italic gold styling)
 - 1–2 sentences describing what it is and what it does
-- **Solution mockup:** Replace the browser-chrome preview block with your actual product screenshot
+- **Solution image:** Update `src="images/preview.png"` with your own preview or screenshot path
 
 ---
 
@@ -317,4 +323,4 @@ For multi-use or extended licensing, please get in touch.
 
 ---
 
-*Thank you for your purchase. If you have any questions, feel free to reach out.*"# premium-landing-page-template" 
+*Thank you for your purchase. If you have any questions, feel free to reach out.*

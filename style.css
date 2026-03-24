@@ -53,8 +53,7 @@
     --bg-section:           #191919;    /* Alternate section backgrounds             */
     --bg-card:              #1e1e1e;    /* Cards, FAQ items, proof items             */
     --bg-card-hover:        #222222;    /* Card hover lift state                     */
-    --bg-mockup:            #252525;    /* Browser mockup chrome                     */
-    --bg-mockup-content:    #1a1a1a;    /* Mockup inner content area                 */
+    --bg-mockup:            #252525;    /* Avatar backgrounds, subtle fills          */
 
     /* --- BORDERS & DIVIDERS -------------------------------------
        Thin lines that give structure without visual noise.
@@ -647,36 +646,6 @@ p {
     box-shadow: var(--shadow-card);
 }
 
-/* Placeholder block — replace with <img> in production          */
-.hero-image-placeholder {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-mockup) 100%);
-    border: 1px solid var(--border-medium);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-card);
-}
-
-.placeholder-inner {
-    text-align: center;
-    color: var(--text-gray);
-}
-
-.placeholder-icon {
-    font-size: 36px;
-    color: var(--border-light);
-    margin-bottom: var(--space-sm);
-}
-
-.placeholder-inner p {
-    font-size: 13px;
-    color: var(--text-gray);
-    margin: 0;
-    line-height: 1.6;
-}
-
 /* Decorative corner accents (CSS-drawn L-shapes)                 */
 .image-corner {
     position: absolute;
@@ -910,53 +879,14 @@ p {
     margin-bottom: var(--space-sm);
 }
 
-/* Browser-chrome-style mockup                                   */
-.solution-mockup {
+/* Solution image — the <img> in the solution section             */
+.solution-visual img {
     display: inline-block;
-    max-width: 480px;
+    max-width: 600px;
     width: 100%;
-    background-color: var(--bg-mockup);
-    border: 1px solid var(--border-medium);
+    height: auto;
     box-shadow: var(--shadow-card);
-    text-align: left;
-    overflow: hidden;
-}
-
-/* The three dots at the top of the browser mock                 */
-.mockup-bar {
-    background-color: var(--bg-darker);
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-bottom: 1px solid var(--border-medium);
-}
-
-.mockup-bar span {
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--border-light);
-}
-
-.mockup-bar span:nth-child(1) { background-color: #ff5f57; }
-.mockup-bar span:nth-child(2) { background-color: #ffbd2e; }
-.mockup-bar span:nth-child(3) { background-color: #28c840; }
-
-.mockup-content {
-    height: 200px;
-    background-color: var(--bg-mockup-content);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.mockup-placeholder-text {
-    font-size: 13px;
-    color: var(--text-gray);
-    text-align: center;
-    line-height: 1.7;
+    border: 1px solid var(--border-medium);
 }
 
 
@@ -1678,7 +1608,4 @@ p {
         padding: var(--space-sm);
     }
 
-    .hero-image-placeholder {
-        aspect-ratio: 3 / 2;
-    }
 }
